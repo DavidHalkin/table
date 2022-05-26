@@ -1,0 +1,118 @@
+@import
+'_reboot';
+
+// css3 variables
+:root{
+    --primary:#006df2;
+    --primary_2:#b3d3fb;
+    --primary_3:#e5f0fd;
+    --indent_table:10px;
+}
+// scroll
+@mixin scroll{
+    overflow-y: auto;
+	scrollbar-color:  var(--primary) transparent;
+	scrollbar-width: thin;
+	&::-webkit-scrollbar {
+		height: 10px;
+        border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+	    background-color: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--primary);
+        border-radius: 5px;
+	}
+}
+.list_marked{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li{
+        position: relative;
+        padding-left: 34px;
+        &:before{
+            content: "";
+            width: 24px;
+            height: 24px;
+            display: block;
+            background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cpath d='M19.766 6.24a.788.788 0 0 0-1.132 0L9.05 16.027l-3.684-3.763a.788.788 0 0 0-1.132 0 .83.83 0 0 0 0 1.156l4.25 4.34c.312.319.82.319 1.132 0l10.15-10.366a.83.83 0 0 0 0-1.156z' fill='%232BB64E' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.text-center{
+    text-align: center;
+}
+.v-a-middle{
+    vertical-align: middle;
+}
+.responsive_table{
+    overflow: hidden;
+    position: relative;
+    &.shadow_right{
+        &:after{
+            content: "";
+            width: 24px;
+            height: calc(100% - var(--indent_table));
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+            top: 0;
+            right: 0;
+            position: absolute;
+        }
+    }
+    &.shadow_left{
+        &:before{
+            content: "";
+            width: 24px;
+            height: calc(100% - var(--indent_table));
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 2;
+            transform:scaleX(-1);
+        }
+    }
+}
+.table{
+    overflow-x: auto;
+    @include scroll;
+    position: relative;
+    
+}
+table{
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: var(--indent_table);
+    th{
+        background: var(--primary);
+        color: #fff;
+        padding: 16px 10px;
+        &:first-child{
+            border-top-left-radius:5px;
+        }
+        &:last-child{
+            border-top-right-radius:5px;
+        }
+    }
+    tr{
+        td{
+            padding: 15px 10px;
+            border-bottom: 1px solid #fff;
+            background: var(--primary_2);
+            vertical-align: top;
+        }
+        &:nth-child(even){
+            td{
+                background: var(--primary_3);
+            }
+        }
+    }
+}
